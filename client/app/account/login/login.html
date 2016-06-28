@@ -1,6 +1,60 @@
-<div ng-include="'components/navbar/navbar.html'"></div>
+<div class="center-vertical" style="margin-top:12%">
+  <div class="center-content row">
 
-<div class="container">
+    <div class="col-md-3 center-margin">
+      <img src="../../assets/image-resources/blurred-bg/blurred-bg-4.jpg" class="login-img wow fadeIn animated" alt="" style="visibility: visible; animation-name: fadeIn;">
+      <form name="form" ng-submit="login(form)" novalidate >
+        <div class="content-box wow bounceInDown modal-content animated" style="visibility: visible; animation-name: bounceInDown;">
+          <h3 class="content-box-header content-box-header-alt bg-default">
+                        <span class="icon-separator">
+                            <i class="glyph-icon icon-cog"></i>
+                        </span>
+                        <span class="header-wrapper">
+                            Area de miembros
+                            <small>.</small>
+                        </span>
+
+          </h3>
+          <div class="content-box-wrapper">
+            <div class="form-group">
+              <div class="input-group">
+                <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Email" ng-model="user.email" required>
+                                <span class="input-group-addon bg-blue">
+                                    <i class="glyph-icon icon-envelope-o"></i>
+                                </span>
+              </div>
+            </div>
+            <div class="form-group">
+              <div class="input-group">
+                <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Contraseña" ng-model="user.password" required>
+                                <span class="input-group-addon bg-blue">
+                                    <i class="glyph-icon icon-unlock-alt"></i>
+                                </span>
+              </div>
+            </div>
+            <div class="form-group has-error">
+              <p class="help-block" ng-show="form.email.$error.required && form.password.$error.required && submitted">
+                Contraseña o Correo incorrectas.
+              </p>
+              <p class="help-block" ng-show="form.email.$error.email && submitted">
+                Por favro ingrese un correo valido.
+              </p>
+
+              <p class="help-block">{{ errors.other }}</p>
+            </div>
+            <div class="form-group">
+              <a href="" title="Recover password">Olvido su contraseña?</a>
+            </div>
+            <button class="btn btn-success btn-block">Iniciar Sesión</button>
+          </div>
+        </div>
+      </form>
+    </div>
+
+  </div>
+</div>
+
+<!--<div class="container">
   <div class="row">
     <div class="col-sm-12">
       <h1>Iniciar Sesión</h1>
@@ -43,4 +97,4 @@
     </div>
   </div>
   <hr>
-</div>
+</div>-->
