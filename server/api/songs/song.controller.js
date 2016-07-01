@@ -1,62 +1,61 @@
 /**
- * Using Rails-like standard naming convention for endpoints.
- * GET     /things              ->  index
- * POST    /things              ->  create
- * GET     /things/:id          ->  show
- * PUT     /things/:id          ->  update
- * DELETE  /things/:id          ->  destroy
+ * GET     /songs              ->  index
+ * POST    /songs              ->  create
+ * GET     /songs/:id          ->  show
+ * PUT     /songs/:id          ->  update
+ * DELETE  /songs/:id          ->  destroy
  */
 
 'use strict';
 
 var _ = require('lodash');
-var Thing = require('./song.model');
+var Song = require('./song.model');
 
-// Get list of things
+// Get list of songs
 exports.index = function(req, res) {
-  Thing.find(function (err, things) {
+  Song.find(function (err, songs) {
     if(err) { return handleError(res, err); }
-    return res.status(200).json(things);
+    return res.status(200).json(songs);
   });
 };
 
-// Get a single thing
+// Get a single song
 exports.show = function(req, res) {
-  Thing.findById(req.params.id, function (err, thing) {
+  Song.findById(req.params.id, function (err, song) {
     if(err) { return handleError(res, err); }
-    if(!thing) { return res.status(404).send('Not Found'); }
-    return res.json(thing);
+    if(!song) { return res.status(404).send('Not Found'); }
+    return res.json(song);
   });
 };
 
-// Creates a new thing in the DB.
+// Creates a new song in the DB.
 exports.create = function(req, res) {
-  Thing.create(req.body, function(err, thing) {
+  Song.create(req.body, function(err, song) {
     if(err) { return handleError(res, err); }
-    return res.status(201).json(thing);
+    return res.status(201).json(song);
   });
 };
 
-// Updates an existing thing in the DB.
+// Updates an existing song in the DB.
 exports.update = function(req, res) {
   if(req.body._id) { delete req.body._id; }
-  Thing.findById(req.params.id, function (err, thing) {
+  Song.findById(req.params.id, function (err, song) {
     if (err) { return handleError(res, err); }
-    if(!thing) { return res.status(404).send('Not Found'); }
-    var updated = _.merge(thing, req.body);
+    if(!song) { return res.status(404).send('Not Found'); }
+    var updated = _.merge(song, req.body);
     updated.save(function (err) {
       if (err) { return handleError(res, err); }
-      return res.status(200).json(thing);
+      return res.status(200).json(song);
     });
   });
 };
 
-// Deletes a thing from the DB.
+// Deletes a song from the DB.
 exports.destroy = function(req, res) {
-  Thing.findById(req.params.id, function (err, thing) {
+  Song.findById(req.params.id, function (err, song) {
     if(err) { return handleError(res, err); }
-    if(!thing) { return res.status(404).send('Not Found'); }
-    thing.remove(function(err) {
+    if(!song) { return res.status(404).send('Not Found'); }
+    song.remove(function(err) {
       if(err) { return handleError(res, err); }
       return res.status(204).send('No Content');
     });

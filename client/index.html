@@ -10,6 +10,8 @@
     <title></title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.js"></script>
     <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
@@ -179,7 +181,7 @@
 
         <!-- build:js({.tmp,client}) app/app.js -->
 
-        <script src="app/app.js"></script>
+          <script src="app/app.js"></script>
           <!-- injector:js -->
           <script src="app/account/account.js"></script>
           <script src="app/account/login/login.controller.js"></script>
@@ -188,9 +190,15 @@
           <script src="app/admin/admin.js"></script>
           <script src="app/main/main.controller.js"></script>
           <script src="app/main/main.js"></script>
+          <script src="app/calendar/calendar.controller.js"></script>
+          <script src="app/calendar/calendar.js"></script>
+          <script src="app/files/files.controller.js"></script>
+          <script src="app/files/files.js"></script>
           <script src="components/auth/auth.service.js"></script>
           <script src="components/auth/user.service.js"></script>
           <script src="components/modal/modal.service.js"></script>
+          <script src="components/services.js"></script>
+
           <script src="components/mongoose-error/mongoose-error.directive.js"></script>
           <script src="components/navbar/navbar.controller.js"></script>
           <script src="components/socket/socket.service.js"></script>

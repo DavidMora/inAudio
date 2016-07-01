@@ -4,12 +4,14 @@
       <button id="nav-toggle" class="collapsed" data-toggle="collapse" data-target="#page-sidebar" aria-expanded="false" aria-controls="navbar"><span></span></button>
       <a href="/home#/" class="logo-content-small" title="MonarchUI"></a>
     </div>
-    <div id="header-logo" class="logo-bg">
-      <a href="/home#/" class="logo-content-big" title="MonarchUI">
-        InTelligence
+    <div id="header-logo" class="logo-bg hidden-sm hidden-xs">
+      <a href="/" title="MonarchUI">
+        <img src="/assets/image-resources/Logo_insite.png" alt="" style="height: 60px;margin-left:-20px">
+        <img src="/assets/image-resources/medical.png" alt="" style="height: 50px;margin : 15px;">
       </a>
-      <a href="/home#/" class="logo-content-small" title="MonarchUI">
-        InTelligence
+      <a href="/" class="hidden-lg hidden-md" title="MonarchUI">
+        <img src="/assets/image-resources/Logo_insite.png" alt="" style="height: 50px;margin-left:-20px">
+        <img src="/assets/image-resources/medical.png" alt="" style="height: 40px;margin : 15px;">
       </a>
       <a id="close-sidebar" href="#" title="Close sidebar">
         <i class="glyph-icon icon-angle-left"></i>
@@ -26,14 +28,14 @@
           <div class="box-sm">
             <div class="login-box clearfix">
               <div class="user-img">
-                <a href="#" title="" class="change-img">Change photo</a>
+                <a href="#" title="" class="change-img">Cambiar foto</a>
                 <img src="/assets/image-resources/gravatar.jpg" alt="">
               </div>
               <div class="user-info">
                 <span>
                 {{ getCurrentUser().name }}
                 </span>
-                <a href="#" title="Cambiar Contraseña" href="#/settings">Ajustes</a>
+                <a title="Cambiar Contraseña" href="/settings">Ajustes</a>
               </div>
             </div>
             <div class="divider"></div>
@@ -411,16 +413,16 @@
     <ul id="sidebar-menu" class="sf-js-enabled sf-arrows">
       <li class="header"><span translate="SIDEBAR_ADMIN"></span></li>
       <li>
-        <a href="/home#/homes" title="Admin Dashboard" class="sfActive">
+        <a href="/" title="Admin Dashboard" class="sfActive">
           <i class="glyph-icon icon-home"></i>
-          <span translate="SIDEBAR_HOMES"></span>
+          <span>Inicio</span>
         </a>
       </li>
       <li class="divider"></li>
       <li>
-        <a href="/home#/notifications" title="Admin Dashboard" class="sfActive">
+        <a href="/calendar" title="Planeador de canciones" class="sfActive">
           <i class="glyph-icon icon-bell"></i>
-          <span translate="SIDEBAR_NOTIFICATIONS"></span>
+          <span>Planeador</span>
         </a>
       </li>
     </ul>
