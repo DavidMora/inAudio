@@ -10,14 +10,17 @@
     <style>
       .bubble{
         border-radius: 5px;
+        margin: 5px;
         background-color: #3ac0f0;
         color: white;
-        margin: auto;
         text-align: center;
+        word-break: break-all;
+        max-width: 300px;
       }
     </style>
     <div class="row">
       <div class="col-sm-12">
+        <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#myModal">Agregar Audio</button>
         <table class="table table-striped">
           <thead>
             <th>Lunes</th>
@@ -30,24 +33,41 @@
           </thead>
           <tbody>
             <tr>
-              <td ng-dblclick="addEvent()" >
-                <div class="bubble">Prueba cancion<br>
-                  cancion 1
-                </div>
-                <div class="bubble" ng-repeat="event in events" ng-if="valid(event)">{{event.name}}<br>
-                {{event.info}}
+              <td>
+                <div class="bubble" ng-repeat="event in events" ng-if="event.day == 0">{{event.hour | date:'shortTime'}}<br>
+                {{event.file}}
                 </div>
               </td>
               <td>
-                <div class="bubble">Prueba cancion<br>
-                  cancion 1
+                <div class="bubble" ng-repeat="event in events" ng-if="event.day == 1">{{event.hour | date:'shortTime'}}<br>
+                  {{event.file}}
                 </div>
               </td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
+              <td>
+                <div class="bubble" ng-repeat="event in events" ng-if="event.day == 2">{{event.hour | date:'shortTime'}}<br>
+                  {{event.file}}
+                </div>
+              </td>
+              <td>
+                <div class="bubble" ng-repeat="event in events" ng-if="event.day == 3">{{event.hour | date:'shortTime'}}<br>
+                  {{event.file}}
+                </div>
+              </td>
+              <td>
+                <div class="bubble" ng-repeat="event in events" ng-if="event.day == 4">{{event.hour | date:'shortTime'}}<br>
+                {{event.file}}
+                </div>
+              </td>
+              <td>
+                <div class="bubble" ng-repeat="event in events" ng-if="event.day == 5">{{event.hour | date:'shortTime'}}<br>
+                {{event.file}}
+                </div>
+              </td>
+              <td>
+                <div class="bubble" ng-repeat="event in events" ng-if="event.day == 6">{{event.hour | date:'shortTime'}}<br>
+                {{event.file}}
+                </div>
+              </td>
             </tr>
           </tbody>
         </table>
@@ -56,7 +76,6 @@
   </div>
 </div>
 
-<button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Open Modal</button>
 
 <!-- Modal -->
 <div id="myModal" class="modal fade" role="dialog">
@@ -69,22 +88,43 @@
         <h4 class="modal-title">Modal Header</h4>
       </div>
       <div class="modal-body">
-        <form >
+        <form ng-submit="createEvent()">
 
           <div class="form-group">
-            <label class="col-sm-4 control-label">Fecha</label>
-            <input type="date" ng-model="event.date" class="form-control">
+            <label class="col-sm-4 control-label">Dia</label>
+            <select name="" id="" class="form-control" ng-model="event.day" required>
+              <option value="0">Lunes</option>
+              <option value="1">Martes</option>
+              <option value="2">Miercoles</option>
+              <option value="3">Jueves</option>
+              <option value="4">Viernes</option>
+              <option value="5">Sabado</option>
+              <option value="6">Domingo</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label class="col-sm-4 control-label">Archivos</label>
+            <select name="" class="form-control" ng-model="event.file">
+              <option value="{{file}}" ng-repeat="file in files" >{{file}}</option>
+
+            </select>
+          </div>
+          <div class="form-group">
+            <label class="col-sm-4 control-label">Repetir</label>
+            <input type="checkbox" ng-model="event.repeat" class="form-control">
 
           </div>
           <div class="form-group">
             <label class="col-sm-4 control-label">Hora</label>
-            <input type="time" ng-model="event.hora" class="form-control">
-
+            <input type="time" ng-model="event.hour" class="form-control">
           </div>
           <div class="form-group">
-            <label class="col-sm-4 control-label">archivo</label>
-            <input type="file" ng-model="event.date" class="form-control">
+            <label class="col-sm-4 control-label">Archivo</label>
+            <input type="file" ng-model="event.cancion" class="form-control">
+          </div>
 
+          <div class="form-group">
+            <input type="submit" class="btn btn-success">
           </div>
 
 

@@ -4,8 +4,9 @@ var mongoose = require('mongoose'),
     Schema = mongoose.Schema;
 
 var EventSchema = new Schema({
-  name: String,
-  info: String,
+  file: String,
+  hour:Date,
+  day:Number,
   active: Boolean
 });
 
