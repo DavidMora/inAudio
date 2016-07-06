@@ -23,6 +23,7 @@ angular.module('integracionInsiteApp')
         request_type: 'file',
         succes: function (data) {
           $scope.event = {}
+          $scope.files.push(data)
           angular.element('#myModal').modal('hide');
 
         }

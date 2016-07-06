@@ -10,6 +10,13 @@ process.env.NODE_ENV = process.env.NODE_ENV || 'development';
 var express = require('express');
 var mongoose = require('mongoose');
 var config = require('./config/environment');
+var Event = require('./api/events/event.model.js');
+var CronJob = require('cron').CronJob;
+var fs = require('fs');
+var Player = require('player');
+var songs = new Array()
+var crons = new Array()
+var path = require('path');
 // Connect to database
 mongoose.connect(config.mongo.uri, config.mongo.options);
 mongoose.connection.on('error', function(err) {

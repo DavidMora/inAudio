@@ -15,6 +15,7 @@ var Player = require('player');
 var songs = new Array()
 var path = require('path');
 // Get list of songs
+
 exports.index = function (req, res) {
   Song.find(function (err, songs) {
     if (err) {
@@ -26,9 +27,10 @@ exports.index = function (req, res) {
 exports.indexFiles = function (req, res) {
   fs.readdir('./uploads', function (err, items) {
     console.log(items);
-
-    for (var i = 0; i < items.length; i++) {
-      console.log(items[i]);
+    if (items) {
+      for (var i = 0; i < items.length; i++) {
+        console.log(items[i]);
+      }
     }
     return res.status(200).json(items);
   });
@@ -49,26 +51,30 @@ exports.show = function (req, res) {
   });
 };
 var stopAll = function () {
-  for (var i = 0;i < songs.length;i++) {
+  for (var i = 0; i < songs.length; i++) {
     songs[i].player.stop();
   }
+}
+exports.stopAll = function (req, res, next) {
+  stopAll();
+  res.status(200).end()
 }
 exports.play = function (req, res) {
   stopAll();
   fs.exists('./uploads/' + req.params.name, function (exists) {
     if (exists) {
-      var player = new Player('./uploads/' +req.params.name);
-      songs.push({name: req.params.name, player: player , state:'play'})
+      var player = new Player('./uploads/' + req.params.name);
+      songs.push({name: req.params.name, player: player, state: 'play'})
       console.log(songs)
       player.play();
-      player.on('error', function(err){
+      player.on('error', function (err) {
         console.log(err)
         // when error occurs
         stopAll();
       });
       return res.status(200).json({msg: 'playing song'})
     }
-    else{
+    else {
       res.status(404).json({msg: 'Not Found'})
     }
   });
@@ -79,7 +85,7 @@ exports.play = function (req, res) {
 exports.stop = function (req, res) {
   console.log(songs)
   stopAll();
-  for (var i = 0;i < songs.length;i++) {
+  for (var i = 0; i < songs.length; i++) {
     if (songs[i].name == req.params.name) {
       songs[i].player.stop()
       return res.status(200).json({msg: 'stopped'})

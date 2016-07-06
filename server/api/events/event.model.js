@@ -6,6 +6,7 @@ var mongoose = require('mongoose'),
 var EventSchema = new Schema({
   file: String,
   hour:Date,
+  date:Date,
   day:Number,
   active: Boolean
 });

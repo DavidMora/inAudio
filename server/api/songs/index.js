@@ -18,6 +18,7 @@ router.get('/list', controller.indexFiles);
 router.get('/:id', controller.show);
 router.get('/play/:name', controller.play);
 router.get('/stop/:name', controller.stop);
+router.get('/stop-all', controller.stopAll);
 router.post('/', upload.single('cancion'), controller.create);
 router.put('/:id', controller.update);
 router.patch('/:id', controller.update);
