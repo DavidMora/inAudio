@@ -107,6 +107,24 @@ angular.module('integracionInsiteApp')
      * @param idevent
      * @returns {HttpPromise}
      */
+
+    eventFactory.stopAll= function(){
+
+      var deferred = $q.defer(); // deferred contains the promise to be returned
+
+      return $http.get('/api/events/stop-all')
+        .then(function(response){
+          // when promise is fulfilled
+          deferred.resolve(response.data);
+          // promise is returned
+          return deferred.promise;
+        },function(err){
+          // when promise is rejected
+          deferred.reject(err);
+          // promise is returned
+          return deferred.promise;
+        });
+    };
     eventFactory.delete = function(id_event){
 
       var deferred = $q.defer(); // deferred contains the promise to be returned

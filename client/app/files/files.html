@@ -32,7 +32,7 @@
             <tr ng-repeat="song in files">
               <td>{{$index+1}} <i class="glyph-icon icon-music"></i></td>
               <td>{{song}}</td>
-              <td><i class="glyph-icon icon-play" style="margin-right: 5px;" ng-click="play(song)"></i><i class="glyph-icon icon-stop" ng-click="stop(song)"></i></td>
+              <td><i class="glyph-icon icon-play" style="margin-right: 5px;" ng-click="play(song)"></i><i class="glyph-icon icon-stop" ng-click="stop(song)" style="margin-right: 5px; " ></i><i class="glyph-icon icon-close" ng-click="deleteFile($index,song)"></i></td>
             </tr>
           </tbody>
         </table>

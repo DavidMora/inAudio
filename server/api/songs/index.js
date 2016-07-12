@@ -13,12 +13,13 @@ var storage = multer.diskStorage({
   }
   })
 var upload = multer({ storage: storage })
+router.get('/stop-all', controller.stopAll);
 router.get('/', controller.index);
-router.get('/list', controller.indexFiles);
+router.get('/files', controller.indexFiles);
+router.delete('/files/:name', controller.deleteFile);
 router.get('/:id', controller.show);
 router.get('/play/:name', controller.play);
 router.get('/stop/:name', controller.stop);
-router.get('/stop-all', controller.stopAll);
 router.post('/', upload.single('cancion'), controller.create);
 router.put('/:id', controller.update);
 router.patch('/:id', controller.update);

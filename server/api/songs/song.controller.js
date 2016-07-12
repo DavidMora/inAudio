@@ -37,6 +37,14 @@ exports.indexFiles = function (req, res) {
 
 
 };
+exports.deleteFile = function (req, res) {
+  fs.unlink('./uploads/'+req.params.name, function (err) {
+    if (err) throw err;
+    console.log(req.params.name + " deleted");
+    return res.status(200).json({msg:'deleted'});
+  });
+
+};
 
 // Get a single song
 exports.show = function (req, res) {
@@ -50,15 +58,21 @@ exports.show = function (req, res) {
     return res.json(song);
   });
 };
+
 var stopAll = function () {
-  for (var i = 0; i < songs.length; i++) {
-    songs[i].player.stop();
+  if (songs) {
+    for (var i = 0; i < songs.length; i++) {
+      songs[i].player.stop();
+    }
   }
 }
+
 exports.stopAll = function (req, res, next) {
+
   stopAll();
   res.status(200).end()
 }
+
 exports.play = function (req, res) {
   stopAll();
   fs.exists('./uploads/' + req.params.name, function (exists) {
@@ -94,6 +108,7 @@ exports.stop = function (req, res) {
   return res.status(404).json({msg: 'Not Found'})
 
 }
+
 // Creates a new song in the DB.
 exports.create = function (req, res) {
   console.log(req.file.originalname)
@@ -101,7 +116,7 @@ exports.create = function (req, res) {
     if (err) {
       return handleError(res, err);
     }
-    return res.status(201).json(song);
+    return res.status(201).json(req.file.filename);
   });
 };
 

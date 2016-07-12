@@ -8,6 +8,7 @@ var EventSchema = new Schema({
   hour:Date,
   date:Date,
   day:Number,
+  repeat:String,
   active: Boolean
 });
 

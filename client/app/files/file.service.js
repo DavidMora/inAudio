@@ -49,6 +49,24 @@ angular.module('integracionInsiteApp')
         });
     };
 
+    fileFactory.stopAll= function(){
+
+      var deferred = $q.defer(); // deferred contains the promise to be returned
+
+      return $http.get('/api/songs/stop-all')
+        .then(function(response){
+          // when promise is fulfilled
+          deferred.resolve(response.data);
+          // promise is returned
+          return deferred.promise;
+        },function(err){
+          // when promise is rejected
+          deferred.reject(err);
+          // promise is returned
+          return deferred.promise;
+        });
+    };
+
     fileFactory.stop = function(name){
 
       var deferred = $q.defer(); // deferred contains the promise to be returned
@@ -72,7 +90,7 @@ angular.module('integracionInsiteApp')
 
       var deferred = $q.defer(); // deferred contains the promise to be returned
 
-      return $http.get('/api/songs/list')
+      return $http.get('/api/songs/files')
         .then(function(response){
           // when promise is fulfilled
           deferred.resolve(response.data);
@@ -167,6 +185,23 @@ angular.module('integracionInsiteApp')
       var deferred = $q.defer(); // deferred contains the promise to be returned
 
       return $http.delete('/api/files/' + id_file)
+        .then(function(response){
+          // when promise is fulfilled
+          deferred.resolve(response.data);
+          // promise is returned
+          return deferred.promise;
+        },function(err){
+          // when promise is rejected
+          deferred.reject(err);
+          // promise is returned
+          return deferred.promise;
+        });
+    };
+    fileFactory.deleteFile = function(id_file){
+
+      var deferred = $q.defer(); // deferred contains the promise to be returned
+
+      return $http.delete('/api/songs/files/' + id_file)
         .then(function(response){
           // when promise is fulfilled
           deferred.resolve(response.data);

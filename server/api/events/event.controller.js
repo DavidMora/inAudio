@@ -19,6 +19,7 @@ var path = require('path');
 Date.prototype.getNextWeekDay = function (d) {
   if (d) {
     var next = this;
+
     next.setDate(this.getDate() - this.getDay() + 7 + d);
     return next;
   }
@@ -44,7 +45,8 @@ var stopPlayer = function (name) {
 var createJob = function (datos, callback) {
   var aux = new Date();
   datos.hour = new Date(datos.hour);
-  if (datos.repeat === 'true') { //si no se repite
+  console.log('los datos que ser reciben',datos)
+  if (datos.repeat !== 'true') { //si no se repite
 
     if (parseInt(datos.day) == aux.getDay() && aux.getHours() <= datos.hour.getHours() && aux.getMinutes() <= datos.hour.getMinutes()) {
       aux.setHours(datos.hour.getHours())

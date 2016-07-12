@@ -16,6 +16,12 @@ angular.module('integracionInsiteApp')
         console.log(msg)
       })
     }
+    $scope.deleteFile = function ($index,name) {
+      File.deleteFile(name).then(function () {
+        $scope.files.splice($index,1);
+      })
+
+    }
     $scope.uploadFile = function () {
       $ajax.post({
         url: '/api/songs',

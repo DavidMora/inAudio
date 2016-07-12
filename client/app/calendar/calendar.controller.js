@@ -17,6 +17,15 @@ angular.module('integracionInsiteApp')
 
       })
     }
+
+    $scope.stopAll = function () {
+      File.stopAll().then(function () {
+
+      })
+      Event.stopAll().then(function () {
+
+      })
+    }
     $scope.uploadFile = function () {
       $ajax.post({
         url: '/api/songs',
