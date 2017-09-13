@@ -45,6 +45,7 @@ var stopPlayer = function (name) {
 var createJob = function (datos, callback, preventSave) {
   var aux = new Date();
   datos.hour = new Date(datos.hour);
+  var timeZone = 'COT'
   if (datos.repeat !== 'true') { //si no se repite
 
     if (parseInt(datos.day) == aux.getDay() && aux.getHours() <= datos.hour.getHours() && aux.getMinutes() <= datos.hour.getMinutes()) {
@@ -58,7 +59,6 @@ var createJob = function (datos, callback, preventSave) {
     if(!preventSave){
       datos.save()
     }
-    var timeZone = 'COT'
     var job = new CronJob(aux, function () {
         stopAll();
         fs.exists('./uploads/' + datos.file, function (exists) {
