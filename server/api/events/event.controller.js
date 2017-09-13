@@ -30,22 +30,21 @@ var stopAll = function () {
     songs[i].player.stop();
   }
 }
-exports.stopAll = function (req,res,next) {
+exports.stopAll = function (req, res, next) {
   stopAll();
   res.status(200).end()
 }
 var stopPlayer = function (name) {
   for (var i = 0; i < songs.length; i++) {
-    if(name == songs[i].name ){
+    if (name == songs[i].name) {
       songs[i].player.stop();
     }
 
   }
 }
-var createJob = function (datos, callback) {
+var createJob = function (datos, callback, preventSave) {
   var aux = new Date();
   datos.hour = new Date(datos.hour);
-  console.log('los datos que ser reciben',datos)
   if (datos.repeat !== 'true') { //si no se repite
 
     if (parseInt(datos.day) == aux.getDay() && aux.getHours() <= datos.hour.getHours() && aux.getMinutes() <= datos.hour.getMinutes()) {
@@ -55,12 +54,12 @@ var createJob = function (datos, callback) {
     else {
       aux = aux.getNextWeekDay(datos.day)
     }
-    var timeZone = 'COT'
     datos.date = aux
-    datos.save(function (res, re) {
-    })
+    if(!preventSave){
+      datos.save()
+    }
+    var timeZone = 'COT'
     var job = new CronJob(aux, function () {
-        console.log('Holaa soy el cronnnnnn')
         stopAll();
         fs.exists('./uploads/' + datos.file, function (exists) {
           if (exists) {
@@ -73,7 +72,6 @@ var createJob = function (datos, callback) {
                 stopAll();
               });
             } catch (err) {
-              console.log('se crashio', err)
             }
           }
           else {
@@ -90,7 +88,6 @@ var createJob = function (datos, callback) {
     jobs.push({data: datos, job: job});
   }
   else {// si se repite por dia
-    console.log('cronnnnnn q se repite')
     var job = new CronJob('00 ' + datos.hour.getMinutes() + ' ' + datos.hour.getHours() + ' * * ' + datos.day, function () {
         stopAll();
         fs.exists('./uploads/' + datos.file, function (exists) {
@@ -136,11 +133,12 @@ var stopJob = function (id) { // stops one job
     if (id == jobs[i].data._id) {
       jobs[i].job.stop();
       stopPlayer(jobs[i].data.file)
-      jobs.splice(i,1)
+      jobs.splice(i, 1)
     }
 
   }
 }
+exports.createNewJob = createJob;
 
 exports.index = function (req, res) {
   Event.find(function (err, events) {
@@ -150,7 +148,6 @@ exports.index = function (req, res) {
     return res.status(200).json(events);
   });
 };
-
 // Get a single event
 exports.show = function (req, res) {
   Event.findById(req.params.id, function (err, event) {

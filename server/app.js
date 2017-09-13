@@ -18,6 +18,23 @@ var songs = new Array()
 var crons = new Array()
 var path = require('path');
 // Connect to database
+var Event = require('./api/events/event.model.js');
+var EventCont = require('./api/events/event.controller.js');
+
+
+Event.find(function(err,data){
+  console.log("event data is",data)
+  var i, event;
+  for(i=0;i<data.length;i++){
+    event = data[i];
+    if(!event || !event.hour){
+      continue;
+    }
+    EventCont.createNewJob(event,function(){},true)
+    console.log(new Date(event.hour).getTime(),event.hour.getTime())
+  }
+})
+
 mongoose.connect(config.mongo.uri, config.mongo.options);
 mongoose.connection.on('error', function(err) {
 	console.error('MongoDB connection error: ' + err);
