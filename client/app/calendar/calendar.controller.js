@@ -31,7 +31,7 @@ angular.module('integracionInsiteApp')
         url: '/api/songs',
         data: $scope.song,
         request_type: 'file',
-        succes: function (data) {
+        success: function (data) {
           $scope.event = {}
           angular.element('#file').modal('hide');
           $scope.files.push(data)
@@ -39,11 +39,12 @@ angular.module('integracionInsiteApp')
       });
     }
     $scope.createEvent = function () {
-      $ajax.post({
+      $.ajax({
+        type:"POST",
         url: '/api/events',
         data: $scope.event,
         request_type: 'file',
-        succes: function (data) {
+        success: function (data) {
           $scope.events.push(data)
           $scope.event = {}
           angular.element('#myModal').modal('hide');
@@ -51,7 +52,7 @@ angular.module('integracionInsiteApp')
             $scope.files = files
           })
 
-        }
+        },error:function(e){console.log("soy un error",e)}
       });
     }
   });

@@ -81,8 +81,8 @@ var createJob = function (datos, callback, preventSave) {
       }, function () {
         /* This function is executed when the job stops */
       },
-      true, /* Start the job right now */
-      timeZone /* Time zone of this job. */
+      true /* Start the job right now */
+      //timeZone /* Time zone of this job. */
     );
     job.start()
     jobs.push({data: datos, job: job});
@@ -112,8 +112,8 @@ var createJob = function (datos, callback, preventSave) {
       }, function () {
         /* This function is executed when the job stops */
       },
-      true, /* Start the job right now */
-      timeZone /* Time zone of this job. */
+      true /* Start the job right now */
+      //timeZone /* Time zone of this job. */
     );
     job.start()
     jobs.push({data: datos, job: job});
@@ -164,6 +164,11 @@ exports.show = function (req, res) {
 // Creates a new event in the DB.
 exports.create = function (req, res) {
   console.log(req.body)
+  if (!req.body.hour || req.body.hour == "" || !req.body.day || !req.body.file){
+    return res.status(400).json("No puede guardar un evento incompleto");
+
+  }
+
 
   Event.create(req.body, function (err, event) {
     if (err) {

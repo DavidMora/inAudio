@@ -27,7 +27,7 @@ angular.module('integracionInsiteApp')
         url: '/api/songs',
         data: $scope.song,
         request_type: 'file',
-        succes: function (data) {
+        success: function (data) {
           $scope.event = {}
           $scope.files.push(data)
           angular.element('#myModal').modal('hide');
