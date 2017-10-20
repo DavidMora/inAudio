@@ -7,7 +7,7 @@
     "es5-shim": "~3.0.1",
     "bootstrap-sass-official": "~3.1.1",
     "bootstrap": "~3.1.1",
-    "jquery":"1.9.1",
+    "jquery": "1.9.1",
     "angular-resource": "~1.4.1",
     "angular-cookies": "~1.4.1",
     "angular-sanitize": "~1.4.1",
@@ -15,14 +15,15 @@
     "font-awesome": "4.1.0",
     "lodash": "~2.4.1",
     "angular-socket-io": "~0.6.0",
-    "angular-ui-router": "~0.2.15"
+    "angular-ui-router": "~0.2.15",
+    "ng-file-upload": "^12.2.13"
   },
   "devDependencies": {
     "angular-mocks": "1.2.*",
     "angular-scenario": "1.2.*"
   },
-  "resolutions":{
+  "resolutions": {
     "angular-sanitize": "1.4.0",
-    "angular":"1.4.1"
+    "angular": "1.4.1"
   }
 }

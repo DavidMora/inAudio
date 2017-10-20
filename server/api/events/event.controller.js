@@ -15,7 +15,10 @@ var fs = require('fs');
 var Player = require('player');
 var songs = new Array()
 var jobs = new Array()
+var { spawn } = require('child_process');
+
 var path = require('path');
+
 Date.prototype.getNextWeekDay = function (d) {
   if (d) {
     var next = this;
@@ -42,6 +45,23 @@ var stopPlayer = function (name) {
 
   }
 }
+var playMusic = function(file){
+  console.log('the file is ',file)
+  var player = spawn('aplay', [file]);
+
+  player.stdout.on('data', function (data){
+    console.log('PLAYER data',data);
+  });
+
+  player.stderr.on('data', function (data){
+    console.log('PLAYER error',data);
+  });
+
+  player.on('close', function (code) {
+    console.log('PLAYER close',code);
+  });
+
+}
 var createJob = function (datos, callback, preventSave) {
   var aux = new Date();
   datos.hour = new Date(datos.hour);
@@ -64,13 +84,14 @@ var createJob = function (datos, callback, preventSave) {
         fs.exists('./uploads/' + datos.file, function (exists) {
           if (exists) {
             try {
-              var player = new Player('./uploads/' + datos.file);
+              /*var player = new Player('./uploads/' + datos.file);
               songs.push({name: datos.file, player: player, state: 'play'})
               player.play();
               player.on('error', function (err) {
                 // when error occurs
                 stopAll();
-              });
+              });*/
+              playMusic('./uploads/' + datos.file);
             } catch (err) {
             }
           }
@@ -93,14 +114,15 @@ var createJob = function (datos, callback, preventSave) {
         fs.exists('./uploads/' + datos.file, function (exists) {
           if (exists) {
             try {
-              var player = new Player('./uploads/' + datos.file);
+              playMusic('./uploads/' + datos.file);
+              /*var player = new Player('./uploads/' + datos.file);
               songs.push({name: datos.file, player: player, state: 'play'})
               player.play();
               player.on('error', function (err) {
                 console.log(err)
                 // when error occurs
                 stopAll();
-              });
+              });*/
             } catch (err) {
               console.log('se crashio', err)
             }
