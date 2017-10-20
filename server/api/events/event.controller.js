@@ -15,7 +15,7 @@ var fs = require('fs');
 var Player = require('player');
 var songs = new Array()
 var jobs = new Array()
-var { spawn } = require('child_process');
+var spawn = require('child_process').spawn;
 
 var path = require('path');
 
@@ -46,8 +46,16 @@ var stopPlayer = function (name) {
   }
 }
 var playMusic = function(file){
-  console.log('the file is ',file)
-  var player = spawn('aplay', [file]);
+  var aux = file.toString()
+  var player;
+  if(!aux || typeof(aux) !== 'string'){
+    return;
+  }
+  if(aux.substr(aux.length-4,aux.length-1).toLowerCase() === '.wav'){
+    player = spawn('aplay', [file]);
+  }else if(aux.substr(aux.length-4,aux.length-1).toLowerCase() === '.mp3'){
+    player = spawn('mpg123', [file]);
+  }
 
   player.stdout.on('data', function (data){
     console.log('PLAYER data',data);
