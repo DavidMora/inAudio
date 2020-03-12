@@ -133,6 +133,7 @@
     <script type="text/javascript" src="/assets/js-core/modernizr.js"></script>
     <script type="text/javascript" src="/assets/js-core/jquery-cookie.js"></script>
 
+
     <!-- endbower -->
     <!-- endbuild -->
     <!-- build:css({.tmp,client}) app/app.css -->
@@ -166,7 +167,7 @@
     <![endif]-->
     <!-- build:js({client,node_modules}) app/vendor.js -->
       <!-- bower:js -->
-      <script src="bower_components/jquery/dist/jquery.js"></script>
+      <script src="bower_components/jquery/jquery.js"></script>
       <script src="bower_components/angular/angular.js"></script>
       <script src="bower_components/angular-resource/angular-resource.js"></script>
       <script src="bower_components/angular-cookies/angular-cookies.js"></script>
@@ -175,6 +176,9 @@
       <script src="bower_components/lodash/dist/lodash.compat.js"></script>
       <script src="bower_components/angular-socket-io/socket.js"></script>
       <script src="bower_components/angular-ui-router/release/angular-ui-router.js"></script>
+      <script src="bower_components/ng-file-upload/ng-file-upload-shim.js"></script> <!-- for no html5 browsers support -->
+      <script src="bower_components/ng-file-upload/ng-file-upload.js"></script>
+
       <!-- endbower -->
       <script src="socket.io-client/socket.io.js"></script>
     <!-- endbuild -->
@@ -249,7 +253,7 @@
     <!-- Theme switcher -->
     <script type="text/javascript" src="/assets/widgets/theme-switcher/themeswitcher.js"></script>
     <script>
-      base_url = 'http://localhost:9000'
+      base_url = 'http://'+window.location.host
     </script>
 </body>
 </html>

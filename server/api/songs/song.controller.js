@@ -11,7 +11,6 @@
 var _ = require('lodash');
 var Song = require('./song.model')
 var fs = require('fs');
-var Player = require('player');
 var songs = new Array()
 var path = require('path');
 // Get list of songs
@@ -111,6 +110,8 @@ exports.stop = function (req, res) {
 
 // Creates a new song in the DB.
 exports.create = function (req, res) {
+  console.log("soy req",req)
+
   console.log(req.file.originalname)
   if(!req.file.originalname){
     return res.status(400).json("No ha seleccionado ningùn archivo");

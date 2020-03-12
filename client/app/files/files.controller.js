@@ -26,6 +26,8 @@ angular.module('integracionInsiteApp')
       $ajax.post({
         url: '/api/songs',
         data: $scope.song,
+        cache : false,
+        dataType    : 'json',
         request_type: 'file',
         success: function (data) {
           $scope.event = {}

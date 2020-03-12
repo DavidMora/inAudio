@@ -118,7 +118,7 @@ angular.module('integracionInsiteApp').service('$ajax', function ($http) {
     $http.get(base_url + $params.url)
       .success(function ($data) {
         components.succes($data);
-        $params.succes($data);
+        $params.success($data);
       })
       .error(function ($data) {
         components.error($data);
@@ -130,7 +130,7 @@ angular.module('integracionInsiteApp').service('$ajax', function ($http) {
     var $request = components.setRequestType();
     $request.success(function ($data) {
       components.succes($data);
-      $params.succes($data);
+      $params.success($data);
     }).error(function ($data) {
       components.error($data);
     });
@@ -143,7 +143,7 @@ angular.module('integracionInsiteApp').service('$ajax', function ($http) {
     var $request = components.setRequestType();
     $request.success(function ($data) {
       components.succes($data);
-      $params.succes($data);
+      $params.success($data);
     }).error(function ($data) {
       components.error($data);
     });
