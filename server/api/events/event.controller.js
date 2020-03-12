@@ -12,7 +12,6 @@ var _ = require('lodash');
 var Event = require('./../events/event.model.js');
 var CronJob = require('cron').CronJob;
 var fs = require('fs');
-var Player = require('player');
 var songs = new Array()
 var jobs = new Array()
 var spawn = require('child_process').spawn;

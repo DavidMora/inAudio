@@ -13,7 +13,6 @@ var config = require('./config/environment');
 var Event = require('./api/events/event.model.js');
 var CronJob = require('cron').CronJob;
 var fs = require('fs');
-var Player = require('player');
 var songs = new Array()
 var crons = new Array()
 var path = require('path');

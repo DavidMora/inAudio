@@ -11,7 +11,6 @@
 var _ = require('lodash');
 var Song = require('./song.model')
 var fs = require('fs');
-var Player = require('player');
 var songs = new Array()
 var path = require('path');
 // Get list of songs
